@@ -67,4 +67,4 @@ typings/
 .serverless
 
 spider/.index.js.swp
-# config/db_config.js
+config/
