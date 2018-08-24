@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<title></title>
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/javascript">
+		if(window.XMLHttpRequest){
+    		XHR = new XMLHttpRequest();
+		}else if(window.ActiveXObject){
+			XHR = new window.ActiveXObject();
+		}else{
+			alert("请升级至最新版本的浏览器");
+		}
+		if(XHR !=null){
+			const _search = location.search.substr(1).split('&')
+			let search = {};
+			for(let i = 0; i < _search.length; i++) {
+				_search[i] = _search[i].split('=')
+				search[_search[i][0]] = _search[i][1]
+			}
+			if (search.page && search.note) {
+				XHR.open("GET", `http://132.232.18.80:10309/getNote?note=${search.note}&page=${search.page}`, true);
+				XHR.send(null);
+				XHR.onreadystatechange = () => {
+				  	if (XHR.readyState === 4 && XHR.status === 200) {
+			   			document.getElementById('content').innerHTML = JSON.parse(XHR.responseText).data.pageContent
+			   			document.getElementsByTagName('title')[0].innerHTML = JSON.parse(XHR.responseText).data.pageTitle
+				  	}
+				};
+			} else {
+	   			document.getElementById('content').innerHTML = '地址参数错误'
+			}
+		}
+	</script>
+</body>
+</html>
