@@ -81,7 +81,7 @@ function formatText(data) {
 		if (data[i].hasCrawled) {
 			text += `<hr/><p style="font-size: 20px; font-weight:bold; margin: 0;">${data[i].title}</p>
 					 <br/>上次更新：<br/>
-					 &nbsp;&nbsp;&nbsp;<a href=${returnUrl(data[i].id, data[i].lastChapter)}>${data[i].chapter_title}</a>
+					 &nbsp;&nbsp;&nbsp;<a href=${returnUrl(data[i].id, data[i].lastchapter)}>${data[i].chapter_title}</a>
 					 <br/><br/>本次更新:<br/>
 					 &nbsp;&nbsp;&nbsp;<a href=${returnUrl(data[i].id, data[i].pageID)}>${data[i].pageTitle}</a><br/><br/>`
 		}
