@@ -22,7 +22,7 @@ async function main() {
 		} else if (res.code === 1) {
 			// console.log(`[${new Date().toLocaleString()}] '${_book_msg[i].title}'无更新`)
 		} else if (res.code === 2) {
-			console.log(`[${new Date().toLocaleString()}] 页面异常，匹配'${_book_msg[i].title}'错误`)
+			console.log(`[${new Date().toLocaleString()}] 页面异常或页面结构已更改，匹配'${_book_msg[i].title}'错误`)
 		}
 	}
 
@@ -34,7 +34,7 @@ async function main() {
 		try {
 			// 爬取章节
 			for(let i = 0; i < book_msg.length; i++) {
-				let res = await ajax.getNote(`${book_msg[i].url}${book_msg[i].pageID}.html`)
+				let res = await ajax.getNote(`${book_msg[i].url}${book_msg[i].pageID}.html`) 
 				if (res.success && res.code === 0) {
 					book_msg[i].hasCrawled = 1
 					await db.insertNewPage(book_msg[i].pageID, book_msg[i].id, book_msg[i].pageTitle, new Date().toJSON(), res.data)

@@ -1,7 +1,7 @@
 const https   = require('https');
 
 const TITLE = /最新：<a href=\"\/book\/(?:\w)+\/([\w\/_\.]*).html\" >((.)+)<\/a>/;
-const CONTENT = /<div id=\"chaptercontent\" class=\"Readarea ReadAjax_content\">([.\s\r\n\S]*)<\/br>(?:[\r\n]*)ps:书友们/;
+const CONTENT = /<div id=\"chaptercontent\" class=\"Readarea ReadAjax_content\">([.\s\r\n\S]*)<script>app2\(\)<\/script>/;
 const TYPING = /正在手打中/
 /*
  * Code:
