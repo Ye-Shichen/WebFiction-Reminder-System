@@ -22,7 +22,7 @@ async function main() {
 		} else if (res.code === 1) {
 			// console.log(`[${new Date().toLocaleString()}] '${_book_msg[i].title}'无更新`)
 		} else if (res.code === 2) {
-			console.log(`[${new Date().toLocaleString()}] 页面异常或页面结构已更改，匹配'${_book_msg[i].title}'错误`)
+			console.log(`[${new Date().toLocaleString()}] 目录页面异常或结构更改，匹配'${_book_msg[i].title}'错误`)
 		}
 	}
 
@@ -43,7 +43,7 @@ async function main() {
 				} else if (res.code === -1) {
 					console.log(`[${new Date().toLocaleString()}] 网络异常，爬取'${book_msg[i].title}'更新错误`)
 				} else if (res.code === 1) {
-					console.log(`[${new Date().toLocaleString()}] 页面异常，匹配'${book_msg[i].title}'错误`)
+					console.log(`[${new Date().toLocaleString()}] 章节内容页面异常或结构已更改，匹配'${book_msg[i].title}'错误`)
 				}
 			}
 
