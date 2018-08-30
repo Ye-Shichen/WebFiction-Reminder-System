@@ -22,7 +22,7 @@ async function main() {
 		} else if (res.code === 1) {
 			// console.log(`[${new Date().toLocaleString()}] '${_book_msg[i].title}'无更新`)
 		} else if (res.code === 2) {
-			console.log(`[${new Date().toLocaleString()}] 页面异常，匹配'${_book_msg[i].title}'错误`)
+			console.log(`[${new Date().toLocaleString()}] 目录页面异常或结构更改，匹配'${_book_msg[i].title}'错误`)
 		}
 	}
 
@@ -34,7 +34,7 @@ async function main() {
 		try {
 			// 爬取章节
 			for(let i = 0; i < book_msg.length; i++) {
-				let res = await ajax.getNote(`${book_msg[i].url}${book_msg[i].pageID}.html`)
+				let res = await ajax.getNote(`${book_msg[i].url}${book_msg[i].pageID}.html`) 
 				if (res.success && res.code === 0) {
 					book_msg[i].hasCrawled = 1
 					await db.insertNewPage(book_msg[i].pageID, book_msg[i].id, book_msg[i].pageTitle, new Date().toJSON(), res.data)
@@ -43,7 +43,7 @@ async function main() {
 				} else if (res.code === -1) {
 					console.log(`[${new Date().toLocaleString()}] 网络异常，爬取'${book_msg[i].title}'更新错误`)
 				} else if (res.code === 1) {
-					console.log(`[${new Date().toLocaleString()}] 页面异常，匹配'${book_msg[i].title}'错误`)
+					console.log(`[${new Date().toLocaleString()}] 章节内容页面异常或结构已更改，匹配'${book_msg[i].title}'错误`)
 				}
 			}
 
@@ -81,7 +81,7 @@ function formatText(data) {
 		if (data[i].hasCrawled) {
 			text += `<hr/><p style="font-size: 20px; font-weight:bold; margin: 0;">${data[i].title}</p>
 					 <br/>上次更新：<br/>
-					 &nbsp;&nbsp;&nbsp;<a href=${returnUrl(data[i].id, data[i].lastChapter)}>${data[i].chapter_title}</a>
+					 &nbsp;&nbsp;&nbsp;<a href=${returnUrl(data[i].id, data[i].lastchapter)}>${data[i].chapter_title}</a>
 					 <br/><br/>本次更新:<br/>
 					 &nbsp;&nbsp;&nbsp;<a href=${returnUrl(data[i].id, data[i].pageID)}>${data[i].pageTitle}</a><br/><br/>`
 		}
